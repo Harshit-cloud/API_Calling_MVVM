@@ -9,7 +9,7 @@ data class CommonResponse (
  var perPage: Int? = null,
   @SerializedName("total") var total : Int? = null,
   @SerializedName("total_pages" ) var totalPages : Int? = null,
-  @SerializedName("data" ) var data: ArrayList<Data> = arrayListOf(),
+   @SerializedName("data" ) var data: List<Data>? = null,
   @SerializedName("support") var support: Support? = Support()
 
 )
