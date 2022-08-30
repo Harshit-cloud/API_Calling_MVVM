@@ -8,7 +8,6 @@ import retrofit2.http.Query
 interface ApiInterface {
 
     companion object {
-        const val BASE_URL = "https://reqres.in/api/"
         var page=1
     }
 
