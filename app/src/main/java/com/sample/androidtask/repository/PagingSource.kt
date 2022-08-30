@@ -30,7 +30,7 @@ class PagingSource @Inject constructor(
             val nextKey = position + 1
             ApiInterface.page++
             return  LoadResult.Page(
-                data = repos,
+                data = repos!!,
                 prevKey = if (position == STARTING_PAGE_INDEX) null else position - 1,
                 nextKey = nextKey
             )
