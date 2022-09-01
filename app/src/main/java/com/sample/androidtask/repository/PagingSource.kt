@@ -23,14 +23,12 @@ class PagingSource @Inject constructor(
 
     override suspend fun load(params:  LoadParams<Int>):  LoadResult<Int, Data> {
         val position = params.key ?: STARTING_PAGE_INDEX
-        try{
-            val response =
-                apiService.getUsers(ApiInterface.page)
-            val repos = response.data
-            val nextKey = position + 1
-            ApiInterface.page++
-            return  LoadResult.Page(
-                data = repos!!,
+        return try{
+            val response = apiService.getUsers(position)
+            val repos = response.data?: listOf()
+            val nextKey =  if(repos.isEmpty()) null else position+1
+              LoadResult.Page(
+                data = repos,
                 prevKey = if (position == STARTING_PAGE_INDEX) null else position - 1,
                 nextKey = nextKey
             )
